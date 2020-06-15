@@ -1,9 +1,10 @@
 $(function () {
   $.ajax({
-    url: 'http://localhost:8080/api/v1/admin/user/info'
-    , headers: {
+    url: window.BigNew.user_info,
+    headers: {
       Authorization: window.localStorage.getItem('token')
-    }, success: function (backData) {
+    },
+    success: function (backData) {
       console.log(backData);
       if (backData.code == 200) {
         $('.user_info>span>i').text(backData.data.nickname);
@@ -13,7 +14,9 @@ $(function () {
     }
   });
   $('.logout').on('click', function () {
-    window.localStorage.removeItem('token');
-    window.location.href = './login.html';
+    if (confirm('确定要退出嘛？')) {
+      window.localStorage.removeItem('token');
+      window.location.href = './login.html';
+    }
   });
 })
