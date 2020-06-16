@@ -1,9 +1,15 @@
 $(function () {
-  //一: 一进到个人中心页面,就显示登录的这个管理员的所有信息
-  
-
-  //二: 图片预览
-
-
-  //三: 点击修改按钮,完成个人信息的修改
+  $.ajax({
+    type: "get",
+    url: BigNew.user_detail,
+    success: function (backData) {
+      console.log(backData);
+      if (backData.code == 200) {
+        for(var key in backData.data) {
+          $('.'+ key).val(backData.data[key]);
+        }
+        $('img.user_pic').attr('src',backData.data.userPic);
+      }
+    }
+  });
 })
