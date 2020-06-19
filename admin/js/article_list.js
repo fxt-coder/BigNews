@@ -29,7 +29,7 @@ $(function () {
         perpage: 3
       },
       success: function (backData) {
-        console.log(backData);
+        // console.log(backData);
         if (backData.code == 200) {
           var res1 = template('articleList', backData);
           $('tbody').html(res1);
@@ -74,6 +74,7 @@ $(function () {
     });
   })
 
+  
   //三:筛选条件搜索文章
   //给搜索按钮设置点击事件,
   $('#btnSearch').on('click', function (e) {
@@ -88,7 +89,6 @@ $(function () {
         .data.totalPage, currentPage);
     });
   })
-
 
   //四:删除文章. 
   //委托方式给删除按钮们注册事件.
@@ -120,4 +120,8 @@ $(function () {
       });
     }
   })
+
+  $('#release_btn').on('click', function () {
+    parent.$('ul.level02>li:eq(1)').click();
+  });
 })
