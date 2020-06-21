@@ -36,7 +36,7 @@ $(function () {
         articleId: id
       },
       success: function (backData) {
-        console.log(backData);
+        // console.log(backData);
         if (backData.code == 200) {
           //通过模板引擎渲染
           var resHtml = template('com_list_temp', backData);
@@ -48,6 +48,36 @@ $(function () {
     });
   }
 
+
+  // 发表评论
+  $('input.comment_sub').on('click', function (e) {
+    e.preventDefault();
+    var comment_name = $('.comment_name').val().trim();
+    var comment_input = $('.comment_input').val().trim();
+    if (comment_name == '' || comment_input == "") {
+      alert('评论不能为空')
+      return;
+    }
+
+    $.ajax({
+      type: "post",
+      url: "http://localhost:8080/api/v1/index/post_comment",
+      data: {
+        author: comment_name,
+        content: comment_input,
+        articleId: id
+      },
+      success: function (backData) {
+        // console.log(backData);
+        if (backData.code == 201) {
+          alert('发表成功!');
+          $('.comment_name').val('');
+          $('.comment_input').val('');
+          getComment();
+        }
+      }
+    });
+  })
 
 
 
