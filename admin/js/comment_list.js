@@ -33,7 +33,7 @@ $(function () {
               //给myPage赋值,值就是当前点击的整个页码
               myPage = page;
               //把当前点击的页码传进去. 调用方法.
-              getComData(page, null);
+              getComData(page, null); 
             }
           });
         }

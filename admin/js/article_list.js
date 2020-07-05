@@ -13,7 +13,6 @@ $(function () {
       }
     }
   });
-
   //----------------------------------------
   //声明一个变量用来记录当前页. 
   var currentPage;
@@ -46,6 +45,7 @@ $(function () {
           //如果满足下面这个条件,说明你刚才删除的是最后一页的最后一条数据
           else if (backData.data.totalPage == currentPage - 1 && backData.data.data.length == 0) {
             currentPage -= 1;
+            
             //重绘一下页码条. 
             $('#pagination').twbsPagination('changeTotalPages', backData.data.totalPage, currentPage);
           }
@@ -74,7 +74,7 @@ $(function () {
     });
   })
 
-  
+
   //三:筛选条件搜索文章
   //给搜索按钮设置点击事件,
   $('#btnSearch').on('click', function (e) {
